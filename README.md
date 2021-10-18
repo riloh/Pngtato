@@ -13,7 +13,7 @@ Windows: [Download](https://github.com/dlance2005/Avatar-pop-up/raw/main/finalBu
 
 Place two similarly sized PNG images in the program's directory, one for the image that will be displayed when idle, and another for when talking, named "resting.png" and "talking.png".
 
-There are settings to control the input device, sensitivity, and background color.  Press <space> to hide/unhide the UI.
+There are settings to control the input device, sensitivity, and background color.  Press \<space\> to hide/unhide the UI.
 ## To-do
 
 - Add setting to modify the delay of when avatar reverts to idle picture after talking stops.
