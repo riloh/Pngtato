@@ -20,7 +20,6 @@ public class micDetect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         if (Microphone.devices.Length > 0)
         {
             microphoneInput = Microphone.Start(Microphone.devices[dropList.value], true, 999, 44100);
@@ -64,7 +63,7 @@ public class micDetect : MonoBehaviour
     {
         int dec = 128;
         float[] waveData = new float[dec];
-        int micPosition = Microphone.GetPosition(null) - (dec + 1);
+        int micPosition = Microphone.GetPosition(Microphone.devices[dropList.value]) - (dec + 1);
         microphoneInput.GetData(waveData, micPosition);
 
         float levelMax = 0;

@@ -323,7 +323,7 @@ PlayerSettings:
   enableCrashReportAPI: 0
   cameraUsageDescription: 
   locationUsageDescription: 
-  microphoneUsageDescription: 
+  microphoneUsageDescription: Detecting voice for changing betwen avatars
   bluetoothUsageDescription: 
   switchNMETAOverride: 
   switchNetLibKey: 
