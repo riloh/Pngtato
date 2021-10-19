@@ -38,7 +38,7 @@ public class micDetect : MonoBehaviour
             blinkingTex.LoadImage(File.ReadAllBytes("./blinking.png"));
             blinking = true;
         }
-        catch (FileNotFoundException e)
+        catch (FileNotFoundException)
         {
             blinking = false;
         }
@@ -57,7 +57,10 @@ public class micDetect : MonoBehaviour
 
         if (level > uiReference.sensSlider.value && timeRemaining <= 0)
         {
-            imageAnimator.Play("bounce");
+            if (uiReference.bounceToggle.isOn)
+            {
+                imageAnimator.Play("bounce");
+            }
             image.texture = talkingTex;
             timeRemaining = uiReference.revertSlider.value;
         }
@@ -68,7 +71,10 @@ public class micDetect : MonoBehaviour
         else if (timeRemaining <= 0)
         {
             image.texture = restingTex;
-            imageAnimator.Play("bounceDown");
+            if (uiReference.bounceToggle.isOn)
+            {
+                imageAnimator.Play("bounceDown");
+            }
         }
 
         if (blinking)

@@ -15,6 +15,7 @@ public class UI : MonoBehaviour
     public Slider revertSlider;
     public Text revertLabel;
     public Text revertValue;
+    public Toggle bounceToggle;
     public Camera mainCam;
     public micDetect micReference;
 
@@ -77,6 +78,7 @@ public class UI : MonoBehaviour
                 revertLabel.gameObject.SetActive(false);
                 revertValue.gameObject.SetActive(false);
                 revertSlider.gameObject.SetActive(false);
+                bounceToggle.gameObject.SetActive(false);
             }
             else
             {
@@ -89,6 +91,7 @@ public class UI : MonoBehaviour
                 revertLabel.gameObject.SetActive(true);
                 revertValue.gameObject.SetActive(true);
                 revertSlider.gameObject.SetActive(true);
+                bounceToggle.gameObject.SetActive(true);
             }
         }
     }
