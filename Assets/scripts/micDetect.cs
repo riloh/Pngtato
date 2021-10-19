@@ -9,11 +9,14 @@ public class micDetect : MonoBehaviour
     public RawImage image;
     Texture2D restingTex;
     Texture2D talkingTex;
+    Texture2D blinkingTex;
     public Animator imageAnimator;
     public Dropdown dropList;
+    bool blinking;
     public UI uiReference;
 
     float timeRemaining = 1.0f;
+    float blinkCount = 5.0f;
 
     public AudioClip microphoneInput;
 
@@ -27,8 +30,19 @@ public class micDetect : MonoBehaviour
 
         restingTex = new Texture2D(2, 2);
         talkingTex = new Texture2D(2, 2);
+        blinkingTex = new Texture2D(2, 2);
         restingTex.LoadImage(File.ReadAllBytes("./resting.png"));
         talkingTex.LoadImage(File.ReadAllBytes("./talking.png"));
+        
+        try {
+            blinkingTex.LoadImage(File.ReadAllBytes("./blinking.png"));
+            blinking = true;
+        }
+        catch (FileNotFoundException e)
+        {
+            blinking = false;
+        }
+        Debug.Log(blinking);
 
         image.texture = restingTex;
     }
@@ -39,6 +53,7 @@ public class micDetect : MonoBehaviour
         float level = getMicLevel();
 
         timeRemaining -= Time.deltaTime;
+        blinkCount -= Time.deltaTime;
 
         if (level > uiReference.sensSlider.value && timeRemaining <= 0)
         {
@@ -54,6 +69,14 @@ public class micDetect : MonoBehaviour
         {
             image.texture = restingTex;
             imageAnimator.Play("bounceDown");
+        }
+
+        if (blinking)
+        {
+            if(blinkCount <= 0 && timeRemaining <= 0)
+            {
+                StartCoroutine("PlayBlink");
+            }
         }
     }
 
@@ -77,5 +100,14 @@ public class micDetect : MonoBehaviour
 
         return level;
     }
+
+    IEnumerator PlayBlink()
+    {
+        image.texture = blinkingTex;
+        yield return new WaitForSeconds(0.15f);
+        image.texture = restingTex;
+        blinkCount = Random.Range(3f, 10f);
+    }
 }
+
 
