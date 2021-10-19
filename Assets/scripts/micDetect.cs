@@ -55,8 +55,6 @@ public class micDetect : MonoBehaviour
             image.texture = restingTex;
             imageAnimator.Play("bounceDown");
         }
-
-
     }
 
     float getMicLevel()

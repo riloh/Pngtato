@@ -17,6 +17,7 @@ There are settings to control the input device, sensitivity, and background colo
 ## To-do
 
 - ~~Add setting to modify the delay of when avatar reverts to idle picture after talking stops.~~ DONE
-- Add support for GIF
+- Add support for "blinking" effect
+- Add support for multiple expressions (maybe?  Need to investigate options)
 
   
