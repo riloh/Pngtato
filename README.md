@@ -11,14 +11,22 @@ Windows: [Download](https://github.com/dlance2005/Avatar-pop-up/raw/main/finalBu
   
 ## Usage
 
-Place two similarly sized PNG images in the program's directory, one for the image that will be displayed when idle, and another for when talking, named "resting.png" and "talking.png".
+Place two similarly sized PNG images in the program's directory, one for the image that will be displayed when idle, and another for when talking, named "resting.png" and "talking.png".  Optionally, a third PNG titled "blinking.png" can be included for a blinking effect (ideally for eye blinking.)
 
-There are settings to control the input device, sensitivity, and background color.  Press \<space\> to hide/unhide the UI.
+The following settings can be changed:
+
+- Input device
+- Sensitivity
+- Background color
+- Delay time on reverting back to resting PNG after talking
+- Whether or not the bouncing animation plays when talking
+
+Press \<space\> to hide/unhide the UI.
 ## To-do
 
 - ~~Add setting to modify the delay of when avatar reverts to idle picture after talking stops.~~ DONE
-- Add support for "blinking" effect
-- Add option to disable bouncing effect
+- ~~Add support for "blinking" effect~~ DONE
+- ~~Add option to disable bouncing effect~~ DONE
 - Add support for multiple expressions (maybe?  Need to investigate options)
 
   
