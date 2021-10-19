@@ -11,11 +11,11 @@ public class micDetect : MonoBehaviour
     Texture2D talkingTex;
     public Animator imageAnimator;
     public Dropdown dropList;
+    public UI uiReference;
 
-    float timeRemaining = 0.7f;
+    float timeRemaining = 1.0f;
 
     public AudioClip microphoneInput;
-    public float sensitivity;
 
     // Start is called before the first frame update
     void Start()
@@ -40,15 +40,15 @@ public class micDetect : MonoBehaviour
 
         timeRemaining -= Time.deltaTime;
 
-        if (level > sensitivity && timeRemaining <= 0)
+        if (level > uiReference.sensSlider.value && timeRemaining <= 0)
         {
             imageAnimator.Play("bounce");
             image.texture = talkingTex;
-            timeRemaining = 0.7f;
+            timeRemaining = uiReference.revertSlider.value;
         }
-        else if(level > sensitivity)
+        else if(level > uiReference.sensSlider.value)
         {
-            timeRemaining = 0.7f;
+            timeRemaining = uiReference.revertSlider.value;
         }
         else if (timeRemaining <= 0)
         {

@@ -12,6 +12,9 @@ public class UI : MonoBehaviour
     public Text sensValue;
     public Slider hueSlider;
     public Text hueLabel;
+    public Slider revertSlider;
+    public Text revertLabel;
+    public Text revertValue;
     public Camera mainCam;
     public micDetect micReference;
 
@@ -24,7 +27,9 @@ public class UI : MonoBehaviour
         //getting HSV values of camera's BG color
         Color.RGBToHSV(mainCam.backgroundColor, out H, out S, out V);
 
-        sensValue.text = sensSlider.value.ToString();
+        sensValue.text = sensSlider.value.ToString("F2");
+        revertValue.text = revertSlider.value.ToString("F2");
+
 
         //adding listeners for when UI values are changed
         micList.onValueChanged.AddListener(delegate {
@@ -37,6 +42,10 @@ public class UI : MonoBehaviour
         hueSlider.onValueChanged.AddListener(delegate
         {
             HueSliderValueChanged(hueSlider);
+        });
+        revertSlider.onValueChanged.AddListener(delegate
+        {
+            RevertSliderValueChanged(revertSlider);
         });
 
         //Populating mic dropdown with system's audio devices
@@ -65,6 +74,9 @@ public class UI : MonoBehaviour
                 sensValue.gameObject.SetActive(false);
                 hueSlider.gameObject.SetActive(false);
                 hueLabel.gameObject.SetActive(false);
+                revertLabel.gameObject.SetActive(false);
+                revertValue.gameObject.SetActive(false);
+                revertSlider.gameObject.SetActive(false);
             }
             else
             {
@@ -74,6 +86,9 @@ public class UI : MonoBehaviour
                 sensValue.gameObject.SetActive(true);
                 hueSlider.gameObject.SetActive(true);
                 hueLabel.gameObject.SetActive(true);
+                revertLabel.gameObject.SetActive(true);
+                revertValue.gameObject.SetActive(true);
+                revertSlider.gameObject.SetActive(true);
             }
         }
     }
@@ -83,11 +98,14 @@ public class UI : MonoBehaviour
     }
     void SensSliderChanged(Slider change)
     {
-        micReference.sensitivity = change.value;
         sensValue.text = change.value.ToString("F2");
     }
     void HueSliderValueChanged(Slider change)
     {
         mainCam.backgroundColor = Color.HSVToRGB(change.value, S, V);
+    }
+    void RevertSliderValueChanged(Slider change)
+    {
+        revertValue.text = change.value.ToString("F2");
     }
 }

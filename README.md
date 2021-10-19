@@ -16,6 +16,7 @@ Place two similarly sized PNG images in the program's directory, one for the ima
 There are settings to control the input device, sensitivity, and background color.  Press \<space\> to hide/unhide the UI.
 ## To-do
 
-- Add setting to modify the delay of when avatar reverts to idle picture after talking stops.
+- ~~Add setting to modify the delay of when avatar reverts to idle picture after talking stops.~~ DONE
+- Add support for GIF
 
   
