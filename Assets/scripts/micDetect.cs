@@ -12,8 +12,11 @@ public class micDetect : MonoBehaviour
     Texture2D blinkingTex;
     public Animator imageAnimator;
     public Dropdown dropList;
-    bool blinking;
+    bool blinkAvailable = false;
+    bool blinking = false;
     public UI uiReference;
+    List<Texture2D> emotions = new List<Texture2D>();
+    Texture2D currentTex;
 
     float timeRemaining = 1.0f;
     float blinkCount = 5.0f;
@@ -23,28 +26,38 @@ public class micDetect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (Microphone.devices.Length > 0)
+        int emoteCounter = 0;
+
+        if(Microphone.devices.Length > 0)
         {
             microphoneInput = Microphone.Start(Microphone.devices[dropList.value], true, 999, 44100);
         }
-
-        restingTex = new Texture2D(2, 2);
-        talkingTex = new Texture2D(2, 2);
-        blinkingTex = new Texture2D(2, 2);
-        restingTex.LoadImage(File.ReadAllBytes("./images/resting.png"));
-        talkingTex.LoadImage(File.ReadAllBytes("./images/talking.png"));
         
-        try {
-            blinkingTex.LoadImage(File.ReadAllBytes("./images/blinking.png"));
-            blinking = true;
-        }
-        catch (FileNotFoundException)
+        foreach(string file in Directory.GetFiles("./images/"))
         {
-            blinking = false;
+            if(file.Contains("emote")){
+                emotions.Add(new Texture2D(2, 2));
+                emotions[emoteCounter].LoadImage(File.ReadAllBytes(file));
+                emoteCounter++;
+            }
+            else if(file.Contains("resting")){
+                restingTex = new Texture2D(2, 2);
+                restingTex.LoadImage(File.ReadAllBytes(file));
+            }
+            else if(file.Contains("talking")){
+                talkingTex = new Texture2D(2, 2);
+                talkingTex.LoadImage(File.ReadAllBytes(file));
+            }
+            else if(file.Contains("blinking"))
+            {
+                blinkingTex = new Texture2D(2, 2);
+                blinkingTex.LoadImage(File.ReadAllBytes(file));
+                blinkAvailable = true;
+            }
         }
-        Debug.Log(blinking);
 
         image.texture = restingTex;
+        currentTex = restingTex;
     }
 
     // Update is called once per frame
@@ -55,29 +68,29 @@ public class micDetect : MonoBehaviour
         timeRemaining -= Time.deltaTime;
         blinkCount -= Time.deltaTime;
 
-        if (level > uiReference.sensSlider.value && timeRemaining <= 0)
+        if(level > uiReference.sensSlider.value && timeRemaining <= 0 && !blinking)
         {
-            if (uiReference.bounceToggle.isOn)
+            if(uiReference.bounceToggle.isOn)
             {
                 imageAnimator.Play("bounce");
             }
             image.texture = talkingTex;
             timeRemaining = uiReference.revertSlider.value;
         }
-        else if(level > uiReference.sensSlider.value)
+        else if(level > uiReference.sensSlider.value && !blinking)
         {
             timeRemaining = uiReference.revertSlider.value;
         }
-        else if (timeRemaining <= 0)
+        else if(timeRemaining <= 0)
         {
-            image.texture = restingTex;
-            if (uiReference.bounceToggle.isOn)
+            image.texture = currentTex;
+            if(uiReference.bounceToggle.isOn)
             {
                 imageAnimator.Play("bounceDown");
             }
         }
 
-        if (blinking)
+        if(blinkAvailable)
         {
             if(blinkCount <= 0 && timeRemaining <= 0)
             {
@@ -94,10 +107,10 @@ public class micDetect : MonoBehaviour
         microphoneInput.GetData(waveData, micPosition);
 
         float levelMax = 0;
-        for (int i = 0; i < dec; i++)
+        for(int i = 0; i < dec; i++)
         {
             float wavePeak = waveData[i] * waveData[i];
-            if (levelMax < wavePeak)
+            if(levelMax < wavePeak)
             {
                 levelMax = wavePeak;
             }
@@ -109,10 +122,12 @@ public class micDetect : MonoBehaviour
 
     IEnumerator PlayBlink()
     {
+        blinking = true;
         image.texture = blinkingTex;
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.1f);
         image.texture = restingTex;
         blinkCount = Random.Range(3f, 10f);
+        blinking = false;
     }
 }
 
