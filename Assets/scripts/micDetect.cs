@@ -28,27 +28,30 @@ public class micDetect : MonoBehaviour
     {
         int emoteCounter = 0;
 
-        if(Microphone.devices.Length > 0)
+        if (Microphone.devices.Length > 0)
         {
             microphoneInput = Microphone.Start(Microphone.devices[dropList.value], true, 999, 44100);
         }
-        
-        foreach(string file in Directory.GetFiles("./images/"))
+
+        foreach (string file in Directory.GetFiles("./images/"))
         {
-            if(file.Contains("emote")){
+            if (file.Contains("emote"))
+            {
                 emotions.Add(new Texture2D(2, 2));
                 emotions[emoteCounter].LoadImage(File.ReadAllBytes(file));
                 emoteCounter++;
             }
-            else if(file.Contains("resting")){
+            else if (file.Contains("resting"))
+            {
                 restingTex = new Texture2D(2, 2);
                 restingTex.LoadImage(File.ReadAllBytes(file));
             }
-            else if(file.Contains("talking")){
+            else if (file.Contains("talking"))
+            {
                 talkingTex = new Texture2D(2, 2);
                 talkingTex.LoadImage(File.ReadAllBytes(file));
             }
-            else if(file.Contains("blinking"))
+            else if (file.Contains("blinking"))
             {
                 blinkingTex = new Texture2D(2, 2);
                 blinkingTex.LoadImage(File.ReadAllBytes(file));
@@ -68,38 +71,63 @@ public class micDetect : MonoBehaviour
         timeRemaining -= Time.deltaTime;
         blinkCount -= Time.deltaTime;
 
-        if(level > uiReference.sensSlider.value && timeRemaining <= 0 && !blinking)
+        if (level > uiReference.sensSlider.value && timeRemaining <= 0 && !blinking)
         {
-            if(uiReference.bounceToggle.isOn)
+            if (uiReference.bounceToggle.isOn)
             {
                 imageAnimator.Play("bounce");
             }
             image.texture = talkingTex;
             timeRemaining = uiReference.revertSlider.value;
         }
-        else if(level > uiReference.sensSlider.value && !blinking)
+        else if (level > uiReference.sensSlider.value && !blinking)
         {
             timeRemaining = uiReference.revertSlider.value;
         }
-        else if(timeRemaining <= 0)
+        else if (timeRemaining <= 0)
         {
             image.texture = currentTex;
-            if(uiReference.bounceToggle.isOn)
+            if (uiReference.bounceToggle.isOn)
             {
                 imageAnimator.Play("bounceDown");
             }
         }
 
-        if(blinkAvailable)
+        if (blinkAvailable)
         {
-            if(blinkCount <= 0 && timeRemaining <= 0)
+            if (blinkCount <= 0 && timeRemaining <= 0)
             {
                 StartCoroutine("PlayBlink");
             }
         }
-        SetEmote();
     }
-
+    private void OnGUI()
+    {
+        Event e = Event.current;
+        if (e.isKey)
+        {
+            switch (e.keyCode.ToString())
+            {
+                case "Keypad1":
+                    if (emotions.Count >= 1) { currentTex = emotions[0]; }
+                    break;
+                case "Keypad2":
+                    if (emotions.Count >= 2) { currentTex = emotions[1]; }
+                    break;
+                case "Keypad3":
+                    if (emotions.Count >= 3) { currentTex = emotions[2]; }
+                    break;
+                case "Keypad4":
+                    if (emotions.Count >= 4) { currentTex = emotions[3]; }
+                    break;
+                case "Keypad5":
+                    if (emotions.Count >= 5) { currentTex = emotions[4]; }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
     float getMicLevel()
     {
         int dec = 128;
@@ -108,10 +136,10 @@ public class micDetect : MonoBehaviour
         microphoneInput.GetData(waveData, micPosition);
 
         float levelMax = 0;
-        for(int i = 0; i < dec; i++)
+        for (int i = 0; i < dec; i++)
         {
             float wavePeak = waveData[i] * waveData[i];
-            if(levelMax < wavePeak)
+            if (levelMax < wavePeak)
             {
                 levelMax = wavePeak;
             }
@@ -120,7 +148,6 @@ public class micDetect : MonoBehaviour
 
         return level;
     }
-
     IEnumerator PlayBlink()
     {
         blinking = true;
@@ -130,45 +157,4 @@ public class micDetect : MonoBehaviour
         blinkCount = Random.Range(6f, 10f);
         blinking = false;
     }
-
-    void SetEmote()
-    {
-        if (Input.GetButtonDown("Emote1"))
-        {
-            if (emotions.Count >= 1)
-            {
-                currentTex = emotions[0];
-            }
-        }
-        if (Input.GetButtonDown("Emote2"))
-        {
-            if (emotions.Count >= 2)
-            {
-                currentTex = emotions[1];
-            }
-        }
-        if (Input.GetButtonDown("Emote3"))
-        {
-            if (emotions.Count >= 3)
-            {
-                currentTex = emotions[2];
-            }
-        }
-        if (Input.GetButtonDown("Emote4"))
-        {
-            if (emotions.Count >= 4)
-            {
-                currentTex = emotions[3];
-            }
-        }
-        if (Input.GetButtonDown("Emote5"))
-        {
-            if (emotions.Count >= 5)
-            {
-                currentTex = emotions[4];
-            }
-        }
-    }
 }
-
-
