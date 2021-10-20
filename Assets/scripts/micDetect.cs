@@ -31,11 +31,11 @@ public class micDetect : MonoBehaviour
         restingTex = new Texture2D(2, 2);
         talkingTex = new Texture2D(2, 2);
         blinkingTex = new Texture2D(2, 2);
-        restingTex.LoadImage(File.ReadAllBytes("./resting.png"));
-        talkingTex.LoadImage(File.ReadAllBytes("./talking.png"));
+        restingTex.LoadImage(File.ReadAllBytes("./images/resting.png"));
+        talkingTex.LoadImage(File.ReadAllBytes("./images/talking.png"));
         
         try {
-            blinkingTex.LoadImage(File.ReadAllBytes("./blinking.png"));
+            blinkingTex.LoadImage(File.ReadAllBytes("./images/blinking.png"));
             blinking = true;
         }
         catch (FileNotFoundException)
