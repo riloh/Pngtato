@@ -97,6 +97,7 @@ public class micDetect : MonoBehaviour
                 StartCoroutine("PlayBlink");
             }
         }
+        SetEmote();
     }
 
     float getMicLevel()
@@ -126,8 +127,47 @@ public class micDetect : MonoBehaviour
         image.texture = blinkingTex;
         yield return new WaitForSeconds(0.1f);
         image.texture = restingTex;
-        blinkCount = Random.Range(3f, 10f);
+        blinkCount = Random.Range(6f, 10f);
         blinking = false;
+    }
+
+    void SetEmote()
+    {
+        if (Input.GetButtonDown("Emote1"))
+        {
+            if (emotions.Count >= 1)
+            {
+                currentTex = emotions[0];
+            }
+        }
+        if (Input.GetButtonDown("Emote2"))
+        {
+            if (emotions.Count >= 2)
+            {
+                currentTex = emotions[1];
+            }
+        }
+        if (Input.GetButtonDown("Emote3"))
+        {
+            if (emotions.Count >= 3)
+            {
+                currentTex = emotions[2];
+            }
+        }
+        if (Input.GetButtonDown("Emote4"))
+        {
+            if (emotions.Count >= 4)
+            {
+                currentTex = emotions[3];
+            }
+        }
+        if (Input.GetButtonDown("Emote5"))
+        {
+            if (emotions.Count >= 5)
+            {
+                currentTex = emotions[4];
+            }
+        }
     }
 }
 
