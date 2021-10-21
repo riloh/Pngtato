@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 367197512}
   - component: {fileID: 367197511}
   m_Layer: 5
-  m_Name: emote2Button
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,8 +388,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 340.5, y: 66}
-  m_SizeDelta: {x: 120, y: 30}
+  m_AnchoredPosition: {x: 385, y: 66}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &367197511
 MonoBehaviour:
@@ -732,7 +732,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Emote 4: 4'
+  m_Text: 'Emote 4: N4'
 --- !u!222 &411995551
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1118,14 +1118,16 @@ MonoBehaviour:
   emote4Button: {fileID: 1491804811}
   emote5Button: {fileID: 2006215473}
   emoteResetButton: {fileID: 1908407379}
+  settingKey: 0
   micReference: {fileID: 403146901}
+  bindValue: 9999
   emoteBindings:
-  - 1
-  - 2
-  - 3
-  - 4
-  - 5
-  - 0
+  - N1
+  - N2
+  - N3
+  - N4
+  - N5
+  - N0
 --- !u!1 &627531393
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,7 +1277,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Emote 5: 5'
+  m_Text: 'Emote 5: N5'
 --- !u!222 &675206050
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1501,7 +1503,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Reset: 0'
+  m_Text: 'Reset: N0'
 --- !u!222 &899348582
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2478,7 +2480,7 @@ GameObject:
   - component: {fileID: 1369163379}
   - component: {fileID: 1369163378}
   m_Layer: 5
-  m_Name: emote1Button
+  m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2501,8 +2503,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 340.5, y: 104}
-  m_SizeDelta: {x: 120, y: 30}
+  m_AnchoredPosition: {x: 385, y: 104}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1369163378
 MonoBehaviour:
@@ -2527,7 +2529,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -2891,7 +2893,7 @@ GameObject:
   - component: {fileID: 1491804812}
   - component: {fileID: 1491804811}
   m_Layer: 5
-  m_Name: emote4Button
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2914,8 +2916,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 340.5, y: -9}
-  m_SizeDelta: {x: 120, y: 30}
+  m_AnchoredPosition: {x: 385, y: -9}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1491804811
 MonoBehaviour:
@@ -3478,7 +3480,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Emote 2: 2'
+  m_Text: 'Emote 2: N2'
 --- !u!222 &1623195172
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3557,7 +3559,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Emote 3: 3'
+  m_Text: 'Emote 3: N3'
 --- !u!222 &1646665325
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3762,7 +3764,7 @@ GameObject:
   - component: {fileID: 1908407380}
   - component: {fileID: 1908407379}
   m_Layer: 5
-  m_Name: emoteResetButton
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3785,8 +3787,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 340.5, y: -82}
-  m_SizeDelta: {x: 120, y: 30}
+  m_AnchoredPosition: {x: 385, y: -82}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1908407379
 MonoBehaviour:
@@ -4073,7 +4075,7 @@ GameObject:
   - component: {fileID: 2006215474}
   - component: {fileID: 2006215473}
   m_Layer: 5
-  m_Name: emote5Button
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4096,8 +4098,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 340.5, y: -45}
-  m_SizeDelta: {x: 120, y: 30}
+  m_AnchoredPosition: {x: 385, y: -45}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2006215473
 MonoBehaviour:
@@ -4194,7 +4196,7 @@ GameObject:
   - component: {fileID: 2027431546}
   - component: {fileID: 2027431545}
   m_Layer: 5
-  m_Name: emote3Button
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4217,8 +4219,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 340.5, y: 29}
-  m_SizeDelta: {x: 120, y: 30}
+  m_AnchoredPosition: {x: 385, y: 29}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2027431545
 MonoBehaviour:
@@ -4586,7 +4588,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Emote 1: 1'
+  m_Text: 'Emote 1: N1'
 --- !u!222 &2069924492
 CanvasRenderer:
   m_ObjectHideFlags: 0

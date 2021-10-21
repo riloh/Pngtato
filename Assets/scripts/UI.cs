@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 
 public class UI : MonoBehaviour
 {
@@ -19,7 +19,9 @@ public class UI : MonoBehaviour
     public Button keybindMenu;
     public Camera mainCam;
     public Button emote1Button, emote2Button, emote3Button, emote4Button, emote5Button, emoteResetButton;
+    public bool settingKey = false;
     public micDetect micReference;
+    public string bindValue = "9999";
     public List<string> emoteBindings = new List<string>();
 
     float H, S, V;
@@ -56,27 +58,27 @@ public class UI : MonoBehaviour
         });
         emote1Button.onClick.AddListener(delegate
         {
-            StartCoroutine("Emote1ButtonClicked");
+            StartCoroutine("EmoteButtonClicked", EventSystem.current.currentSelectedGameObject);
         });
         emote2Button.onClick.AddListener(delegate
         {
-            StartCoroutine("Emote2ButtonClicked");
+            StartCoroutine("EmoteButtonClicked", EventSystem.current.currentSelectedGameObject);
         });
         emote3Button.onClick.AddListener(delegate
         {
-            StartCoroutine("Emote3ButtonClicked");
+            StartCoroutine("EmoteButtonClicked", EventSystem.current.currentSelectedGameObject);
         });
         emote4Button.onClick.AddListener(delegate
         {
-            StartCoroutine("Emote4ButtonClicked");
+            StartCoroutine("EmoteButtonClicked", EventSystem.current.currentSelectedGameObject);
         });
         emote5Button.onClick.AddListener(delegate
         {
-            StartCoroutine("Emote5ButtonClicked");
+            StartCoroutine("EmoteButtonClicked", EventSystem.current.currentSelectedGameObject);
         });
         emoteResetButton.onClick.AddListener(delegate
         {
-            StartCoroutine("EmoteResetButtonClicked");
+            StartCoroutine("EmoteButtonClicked", EventSystem.current.currentSelectedGameObject);
         });
 
         //Populating mic dropdown with system's audio devices
@@ -163,58 +165,29 @@ public class UI : MonoBehaviour
         }
     }
 
-    IEnumerator Emote1ButtonClicked()
-    {
-        while (!Input.anyKey)
+    IEnumerator EmoteButtonClicked(GameObject buttonObj)
+    {   
+        settingKey = true;
+        buttonObj.GetComponent<Image>().color = new Color32(0xC4, 0xC4, 0xC4, 0xFF);
+        int buttonNum = int.Parse(buttonObj.name);
+        while (bindValue == "9999")
         {
             yield return null;
         }
-        emoteBindings[0] = Input.inputString;
-        emote1Button.GetComponentInChildren<Text>().text = "Emote 1: " + emoteBindings[0];
-    }
-    IEnumerator Emote2ButtonClicked()
-    {
-        while (!Input.anyKey)
+        if (bindValue != "Escape")
         {
-            yield return null;
+            emoteBindings[buttonNum] = bindValue;
+            if(buttonNum == 5)
+            {
+                buttonObj.GetComponentInChildren<Text>().text = "Reset: " + emoteBindings[buttonNum];
+            }
+            else
+            {
+                buttonObj.GetComponentInChildren<Text>().text = "Emote " + buttonNum + ": " + emoteBindings[buttonNum];
+            }
         }
-        emoteBindings[1] = Input.inputString;
-        emote2Button.GetComponentInChildren<Text>().text = "Emote 2: " + emoteBindings[1];
-    }
-    IEnumerator Emote3ButtonClicked()
-    {
-        while (!Input.anyKey)
-        {
-            yield return null;
-        }
-        emoteBindings[2] = Input.inputString;
-        emote3Button.GetComponentInChildren<Text>().text = "Emote 3: " + emoteBindings[2];
-    }
-    IEnumerator Emote4ButtonClicked()
-    {
-        while (!Input.anyKey)
-        {
-            yield return null;
-        }
-        emoteBindings[3] = Input.inputString;
-        emote4Button.GetComponentInChildren<Text>().text = "Emote 4: " + emoteBindings[3];
-    }
-    IEnumerator Emote5ButtonClicked()
-    {
-        while (!Input.anyKey)
-        {
-            yield return null;
-        }
-        emoteBindings[4] = Input.inputString;
-        emote5Button.GetComponentInChildren<Text>().text = "Emote 5: " + emoteBindings[4];
-    }
-    IEnumerator EmoteResetButtonClicked()
-    {
-        while (!Input.anyKey)
-        {
-            yield return null;
-        }
-        emoteBindings[5] = Input.inputString;
-        emoteResetButton.GetComponentInChildren<Text>().text = "Reset: " + emoteBindings[5];
+        bindValue = "9999";
+        buttonObj.GetComponent<Image>().color = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
+        settingKey = false;
     }
 }

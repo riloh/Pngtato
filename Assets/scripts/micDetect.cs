@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityRawInput;
 
 public class micDetect : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class micDetect : MonoBehaviour
     void Start()
     {
         int emoteCounter = 0;
+
+        RawKeyInput.Start(true);
+        RawKeyInput.OnKeyDown += SetEmote;
 
         if (Microphone.devices.Length > 0)
         {
@@ -100,11 +104,11 @@ public class micDetect : MonoBehaviour
                 StartCoroutine("PlayBlink");
             }
         }
-
-        if (Input.anyKey)
-        {
-            SetEmote(Input.inputString);
-        }
+    }
+    private void OnDestroy()
+    {
+        RawKeyInput.OnKeyDown -= SetEmote;
+        RawKeyInput.Stop();
     }
     float getMicLevel()
     {
@@ -131,17 +135,24 @@ public class micDetect : MonoBehaviour
         blinking = true;
         image.texture = blinkingTex;
         yield return new WaitForSeconds(0.1f);
-        image.texture = restingTex;
+        image.texture = currentTex;
         blinkCount = Random.Range(6f, 10f);
         blinking = false;
     }
-    void SetEmote(string inputString)
+    void SetEmote(RawKey inputString)
     {
-        if (inputString == uiReference.emoteBindings[0] && emotions.Count >= 1) { currentTex = emotions[0]; image.texture = currentTex; }
-        if (inputString == uiReference.emoteBindings[1] && emotions.Count >= 2) { currentTex = emotions[1]; image.texture = currentTex; }
-        if (inputString == uiReference.emoteBindings[2] && emotions.Count >= 3) { currentTex = emotions[2]; image.texture = currentTex; }
-        if (inputString == uiReference.emoteBindings[3] && emotions.Count >= 4) { currentTex = emotions[3]; image.texture = currentTex; }
-        if (inputString == uiReference.emoteBindings[4] && emotions.Count >= 5) { currentTex = emotions[4]; image.texture = currentTex; }
-        if (inputString == uiReference.emoteBindings[5]) { currentTex = restingTex; }
+        if (!uiReference.settingKey)
+        {
+            if (inputString.ToString() == uiReference.emoteBindings[0] && emotions.Count >= 1) { currentTex = emotions[0]; image.texture = currentTex; }
+            if (inputString.ToString() == uiReference.emoteBindings[1] && emotions.Count >= 2) { currentTex = emotions[1]; image.texture = currentTex; }
+            if (inputString.ToString() == uiReference.emoteBindings[2] && emotions.Count >= 3) { currentTex = emotions[2]; image.texture = currentTex; }
+            if (inputString.ToString() == uiReference.emoteBindings[3] && emotions.Count >= 4) { currentTex = emotions[3]; image.texture = currentTex; }
+            if (inputString.ToString() == uiReference.emoteBindings[4] && emotions.Count >= 5) { currentTex = emotions[4]; image.texture = currentTex; }
+            if (inputString.ToString() == uiReference.emoteBindings[5]) { currentTex = restingTex; image.texture = currentTex; }
+        }
+        else
+        {
+            uiReference.bindValue = inputString.ToString();
+        }
     }
 }
