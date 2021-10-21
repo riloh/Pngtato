@@ -1,3 +1,4 @@
+
 # Avatar pop-up
  
 A small Unity application for displaying "reactive" PNG's for use as a vtuber streaming avatar.  Current methods to achieve this appear to mainly revolve around setting up a discord server with a voice channel, and installing plugins, but I wanted something a little more standalone.
@@ -29,7 +30,9 @@ Press \<space\> to hide/unhide the UI.
 - ~~Add option to disable bouncing effect~~ DONE
 - Add support for multiple expressions (Almost done)
 
+
 \
 \
+Makes use of UnityRawInput by Elringus: [link](https://github.com/Elringus/UnityRawInput)
 \
 This project is licensed under the terms of the MIT license.
