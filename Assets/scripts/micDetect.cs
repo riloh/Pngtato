@@ -100,32 +100,10 @@ public class micDetect : MonoBehaviour
                 StartCoroutine("PlayBlink");
             }
         }
-    }
-    private void OnGUI()
-    {
-        Event e = Event.current;
-        if (e.isKey)
+
+        if (Input.anyKey)
         {
-            switch (e.keyCode.ToString())
-            {
-                case "Keypad1":
-                    if (emotions.Count >= 1) { currentTex = emotions[0]; }
-                    break;
-                case "Keypad2":
-                    if (emotions.Count >= 2) { currentTex = emotions[1]; }
-                    break;
-                case "Keypad3":
-                    if (emotions.Count >= 3) { currentTex = emotions[2]; }
-                    break;
-                case "Keypad4":
-                    if (emotions.Count >= 4) { currentTex = emotions[3]; }
-                    break;
-                case "Keypad5":
-                    if (emotions.Count >= 5) { currentTex = emotions[4]; }
-                    break;
-                default:
-                    break;
-            }
+            SetEmote(Input.inputString);
         }
     }
     float getMicLevel()
@@ -156,5 +134,14 @@ public class micDetect : MonoBehaviour
         image.texture = restingTex;
         blinkCount = Random.Range(6f, 10f);
         blinking = false;
+    }
+    void SetEmote(string inputString)
+    {
+        if (inputString == "0") { currentTex = restingTex; }
+        if (inputString == "1" && emotions.Count >= 1) { currentTex = emotions[0]; }
+        if (inputString == "2" && emotions.Count >= 2) { currentTex = emotions[1]; }
+        if (inputString == "3" && emotions.Count >= 3) { currentTex = emotions[2]; }
+        if (inputString == "4" && emotions.Count >= 4) { currentTex = emotions[3]; }
+        if (inputString == "5" && emotions.Count >= 5) { currentTex = emotions[4]; }
     }
 }
