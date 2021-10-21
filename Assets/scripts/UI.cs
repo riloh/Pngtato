@@ -16,15 +16,17 @@ public class UI : MonoBehaviour
     public Text revertLabel;
     public Text revertValue;
     public Toggle bounceToggle;
+    public Button keybindMenu;
     public Camera mainCam;
+    public Button emote1Button, emote2Button, emote3Button, emote4Button, emote5Button, emoteResetButton;
     public micDetect micReference;
+    public List<string> emoteBindings = new List<string>();
 
     float H, S, V;
 
     // Start is called before the first frame update
     void Start()
     {
-
         //getting HSV values of camera's BG color
         Color.RGBToHSV(mainCam.backgroundColor, out H, out S, out V);
 
@@ -47,6 +49,34 @@ public class UI : MonoBehaviour
         revertSlider.onValueChanged.AddListener(delegate
         {
             RevertSliderValueChanged(revertSlider);
+        });
+        keybindMenu.onClick.AddListener(delegate
+        {
+            KeybindMenuClicked();
+        });
+        emote1Button.onClick.AddListener(delegate
+        {
+            StartCoroutine("Emote1ButtonClicked");
+        });
+        emote2Button.onClick.AddListener(delegate
+        {
+            StartCoroutine("Emote2ButtonClicked");
+        });
+        emote3Button.onClick.AddListener(delegate
+        {
+            StartCoroutine("Emote3ButtonClicked");
+        });
+        emote4Button.onClick.AddListener(delegate
+        {
+            StartCoroutine("Emote4ButtonClicked");
+        });
+        emote5Button.onClick.AddListener(delegate
+        {
+            StartCoroutine("Emote5ButtonClicked");
+        });
+        emoteResetButton.onClick.AddListener(delegate
+        {
+            StartCoroutine("EmoteResetButtonClicked");
         });
 
         //Populating mic dropdown with system's audio devices
@@ -110,5 +140,81 @@ public class UI : MonoBehaviour
     void RevertSliderValueChanged(Slider change)
     {
         revertValue.text = change.value.ToString("F2");
+    }
+    void KeybindMenuClicked()
+    {
+        if (emote1Button.gameObject.activeSelf == true)
+        {
+            emote1Button.gameObject.SetActive(false);
+            emote2Button.gameObject.SetActive(false);
+            emote3Button.gameObject.SetActive(false);
+            emote4Button.gameObject.SetActive(false);
+            emote5Button.gameObject.SetActive(false);
+            emoteResetButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            emote1Button.gameObject.SetActive(true);
+            emote2Button.gameObject.SetActive(true);
+            emote3Button.gameObject.SetActive(true);
+            emote4Button.gameObject.SetActive(true);
+            emote5Button.gameObject.SetActive(true);
+            emoteResetButton.gameObject.SetActive(true);
+        }
+    }
+
+    IEnumerator Emote1ButtonClicked()
+    {
+        while (!Input.anyKey)
+        {
+            yield return null;
+        }
+        emoteBindings[0] = Input.inputString;
+        emote1Button.GetComponentInChildren<Text>().text = "Emote 1: " + emoteBindings[0];
+    }
+    IEnumerator Emote2ButtonClicked()
+    {
+        while (!Input.anyKey)
+        {
+            yield return null;
+        }
+        emoteBindings[1] = Input.inputString;
+        emote2Button.GetComponentInChildren<Text>().text = "Emote 2: " + emoteBindings[1];
+    }
+    IEnumerator Emote3ButtonClicked()
+    {
+        while (!Input.anyKey)
+        {
+            yield return null;
+        }
+        emoteBindings[2] = Input.inputString;
+        emote3Button.GetComponentInChildren<Text>().text = "Emote 3: " + emoteBindings[2];
+    }
+    IEnumerator Emote4ButtonClicked()
+    {
+        while (!Input.anyKey)
+        {
+            yield return null;
+        }
+        emoteBindings[3] = Input.inputString;
+        emote4Button.GetComponentInChildren<Text>().text = "Emote 4: " + emoteBindings[3];
+    }
+    IEnumerator Emote5ButtonClicked()
+    {
+        while (!Input.anyKey)
+        {
+            yield return null;
+        }
+        emoteBindings[4] = Input.inputString;
+        emote5Button.GetComponentInChildren<Text>().text = "Emote 5: " + emoteBindings[4];
+    }
+    IEnumerator EmoteResetButtonClicked()
+    {
+        while (!Input.anyKey)
+        {
+            yield return null;
+        }
+        emoteBindings[5] = Input.inputString;
+        emoteResetButton.GetComponentInChildren<Text>().text = "Reset: " + emoteBindings[5];
     }
 }

@@ -37,23 +37,23 @@ public class micDetect : MonoBehaviour
         {
             if (file.Contains("emote"))
             {
-                emotions.Add(new Texture2D(2, 2));
+                emotions.Add(new Texture2D(2, 2, TextureFormat.ARGB32, false));
                 emotions[emoteCounter].LoadImage(File.ReadAllBytes(file));
                 emoteCounter++;
             }
             else if (file.Contains("resting"))
             {
-                restingTex = new Texture2D(2, 2);
+                restingTex = new Texture2D(2, 2, TextureFormat.ARGB32, false);
                 restingTex.LoadImage(File.ReadAllBytes(file));
             }
             else if (file.Contains("talking"))
             {
-                talkingTex = new Texture2D(2, 2);
+                talkingTex = new Texture2D(2, 2, TextureFormat.ARGB32, false);
                 talkingTex.LoadImage(File.ReadAllBytes(file));
             }
             else if (file.Contains("blinking"))
             {
-                blinkingTex = new Texture2D(2, 2);
+                blinkingTex = new Texture2D(2, 2, TextureFormat.ARGB32, false);
                 blinkingTex.LoadImage(File.ReadAllBytes(file));
                 blinkAvailable = true;
             }
@@ -138,10 +138,10 @@ public class micDetect : MonoBehaviour
     void SetEmote(string inputString)
     {
         if (inputString == "0") { currentTex = restingTex; }
-        if (inputString == "1" && emotions.Count >= 1) { currentTex = emotions[0]; }
-        if (inputString == "2" && emotions.Count >= 2) { currentTex = emotions[1]; }
-        if (inputString == "3" && emotions.Count >= 3) { currentTex = emotions[2]; }
-        if (inputString == "4" && emotions.Count >= 4) { currentTex = emotions[3]; }
-        if (inputString == "5" && emotions.Count >= 5) { currentTex = emotions[4]; }
+        if (inputString == uiReference.emoteBindings[0] && emotions.Count >= 1) { currentTex = emotions[0]; }
+        if (inputString == uiReference.emoteBindings[1] && emotions.Count >= 2) { currentTex = emotions[1]; }
+        if (inputString == uiReference.emoteBindings[2] && emotions.Count >= 3) { currentTex = emotions[2]; }
+        if (inputString == uiReference.emoteBindings[3] && emotions.Count >= 4) { currentTex = emotions[3]; }
+        if (inputString == uiReference.emoteBindings[4] && emotions.Count >= 5) { currentTex = emotions[4]; }
     }
 }
