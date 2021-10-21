@@ -27,6 +27,9 @@ Press \<space\> to hide/unhide the UI.
 - ~~Add setting to modify the delay of when avatar reverts to idle picture after talking stops.~~ DONE
 - ~~Add support for "blinking" effect~~ DONE
 - ~~Add option to disable bouncing effect~~ DONE
-- Add support for multiple expressions (maybe?  Need to investigate options)
+- Add support for multiple expressions (Almost done)
 
-  
+\
+\
+\
+This project is licensed under the terms of the MIT license.
