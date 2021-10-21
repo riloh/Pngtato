@@ -84,7 +84,7 @@ public class micDetect : MonoBehaviour
         {
             timeRemaining = uiReference.revertSlider.value;
         }
-        else if (timeRemaining <= 0)
+        else if (timeRemaining <= 0 && image.texture == talkingTex)
         {
             image.texture = currentTex;
             if (uiReference.bounceToggle.isOn)
@@ -137,11 +137,11 @@ public class micDetect : MonoBehaviour
     }
     void SetEmote(string inputString)
     {
-        if (inputString == "0") { currentTex = restingTex; }
-        if (inputString == uiReference.emoteBindings[0] && emotions.Count >= 1) { currentTex = emotions[0]; }
-        if (inputString == uiReference.emoteBindings[1] && emotions.Count >= 2) { currentTex = emotions[1]; }
-        if (inputString == uiReference.emoteBindings[2] && emotions.Count >= 3) { currentTex = emotions[2]; }
-        if (inputString == uiReference.emoteBindings[3] && emotions.Count >= 4) { currentTex = emotions[3]; }
-        if (inputString == uiReference.emoteBindings[4] && emotions.Count >= 5) { currentTex = emotions[4]; }
+        if (inputString == uiReference.emoteBindings[0] && emotions.Count >= 1) { currentTex = emotions[0]; image.texture = currentTex; }
+        if (inputString == uiReference.emoteBindings[1] && emotions.Count >= 2) { currentTex = emotions[1]; image.texture = currentTex; }
+        if (inputString == uiReference.emoteBindings[2] && emotions.Count >= 3) { currentTex = emotions[2]; image.texture = currentTex; }
+        if (inputString == uiReference.emoteBindings[3] && emotions.Count >= 4) { currentTex = emotions[3]; image.texture = currentTex; }
+        if (inputString == uiReference.emoteBindings[4] && emotions.Count >= 5) { currentTex = emotions[4]; image.texture = currentTex; }
+        if (inputString == uiReference.emoteBindings[5]) { currentTex = restingTex; }
     }
 }
