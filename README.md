@@ -35,4 +35,5 @@ Press \<space\> to hide/unhide the UI.
 \
 Makes use of UnityRawInput by Elringus: [link](https://github.com/Elringus/UnityRawInput)
 \
+\
 This project is licensed under the terms of the MIT license.
