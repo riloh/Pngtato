@@ -640,7 +640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 403146899}
   imageAnimator: {fileID: 403146902}
-  dropList: {fileID: 2067128016}
+  micList: {fileID: 2067128016}
   uiReference: {fileID: 622208556}
   microphoneInput: {fileID: 0}
 --- !u!95 &403146902
@@ -1111,13 +1111,13 @@ MonoBehaviour:
   revertValue: {fileID: 1521470373}
   bounceToggle: {fileID: 2096150759}
   keybindMenu: {fileID: 939407174}
-  mainCam: {fileID: 519420031}
   emote1Button: {fileID: 1369163378}
   emote2Button: {fileID: 367197511}
   emote3Button: {fileID: 2027431545}
   emote4Button: {fileID: 1491804811}
   emote5Button: {fileID: 2006215473}
   emoteResetButton: {fileID: 1908407379}
+  mainCam: {fileID: 519420031}
   settingKey: 0
   micReference: {fileID: 403146901}
   bindValue: 9999

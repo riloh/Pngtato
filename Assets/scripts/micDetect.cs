@@ -5,23 +5,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityRawInput;
 
-public class micDetect : MonoBehaviour
+public class MicDetect : MonoBehaviour
 {
     public RawImage image;
     Texture2D restingTex;
     Texture2D talkingTex;
     Texture2D blinkingTex;
-    public Animator imageAnimator;
-    public Dropdown dropList;
+    Texture2D currentTex;
+    float revertDelay = 1.0f;
+
     bool blinkAvailable = false;
     bool blinking = false;
-    public UI uiReference;
-    List<Texture2D> emotions = new List<Texture2D>();
-    Texture2D currentTex;
-
-    float timeRemaining = 1.0f;
     float blinkCount = 5.0f;
 
+    public Animator imageAnimator;
+    public Dropdown micList;
+
+    public UI uiReference;
+    List<Texture2D> emotions = new List<Texture2D>();
     public AudioClip microphoneInput;
 
     // Start is called before the first frame update
@@ -34,7 +35,7 @@ public class micDetect : MonoBehaviour
 
         if (Microphone.devices.Length > 0)
         {
-            microphoneInput = Microphone.Start(Microphone.devices[dropList.value], true, 999, 44100);
+            microphoneInput = Microphone.Start(Microphone.devices[micList.value], true, 999, 44100);
         }
 
         foreach (string file in Directory.GetFiles("./images/"))
@@ -72,23 +73,23 @@ public class micDetect : MonoBehaviour
     {
         float level = getMicLevel();
 
-        timeRemaining -= Time.deltaTime;
+        revertDelay -= Time.deltaTime;
         blinkCount -= Time.deltaTime;
 
-        if (level > uiReference.sensSlider.value && timeRemaining <= 0 && !blinking)
+        if (level > uiReference.sensSlider.value && revertDelay <= 0 && !blinking)
         {
             if (uiReference.bounceToggle.isOn)
             {
                 imageAnimator.Play("bounce");
             }
             image.texture = talkingTex;
-            timeRemaining = uiReference.revertSlider.value;
+            revertDelay = uiReference.revertSlider.value;
         }
         else if (level > uiReference.sensSlider.value && !blinking)
         {
-            timeRemaining = uiReference.revertSlider.value;
+            revertDelay = uiReference.revertSlider.value;
         }
-        else if (timeRemaining <= 0 && image.texture == talkingTex)
+        else if (revertDelay <= 0 && image.texture == talkingTex)
         {
             image.texture = currentTex;
             if (uiReference.bounceToggle.isOn)
@@ -99,12 +100,13 @@ public class micDetect : MonoBehaviour
 
         if (blinkAvailable)
         {
-            if (blinkCount <= 0 && timeRemaining <= 0)
+            if (blinkCount <= 0 && revertDelay <= 0)
             {
                 StartCoroutine("PlayBlink");
             }
         }
     }
+
     private void OnDestroy()
     {
         RawKeyInput.OnKeyDown -= SetEmote;
@@ -114,7 +116,7 @@ public class micDetect : MonoBehaviour
     {
         int dec = 128;
         float[] waveData = new float[dec];
-        int micPosition = Microphone.GetPosition(Microphone.devices[dropList.value]) - (dec + 1);
+        int micPosition = Microphone.GetPosition(Microphone.devices[micList.value]) - (dec + 1);
         microphoneInput.GetData(waveData, micPosition);
 
         float levelMax = 0;
@@ -130,6 +132,7 @@ public class micDetect : MonoBehaviour
 
         return level;
     }
+
     IEnumerator PlayBlink()
     {
         blinking = true;
@@ -139,6 +142,7 @@ public class micDetect : MonoBehaviour
         blinkCount = Random.Range(6f, 10f);
         blinking = false;
     }
+
     void SetEmote(RawKey inputString)
     {
         if (!uiReference.settingKey)

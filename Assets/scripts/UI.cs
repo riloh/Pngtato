@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UI : MonoBehaviour
 {
+    //UI elements
     public Dropdown micList;
     public Slider sensSlider;
     public Text sensLabel;
@@ -17,10 +18,12 @@ public class UI : MonoBehaviour
     public Text revertValue;
     public Toggle bounceToggle;
     public Button keybindMenu;
-    public Camera mainCam;
     public Button emote1Button, emote2Button, emote3Button, emote4Button, emote5Button, emoteResetButton;
+
+
+    public Camera mainCam;
     public bool settingKey = false;
-    public micDetect micReference;
+    public MicDetect micReference;
     public string bindValue = "9999";
     public List<string> emoteBindings = new List<string>();
 
@@ -31,6 +34,9 @@ public class UI : MonoBehaviour
     {
         //getting HSV values of camera's BG color
         Color.RGBToHSV(mainCam.backgroundColor, out H, out S, out V);
+
+        //setting hue slider to match current camera BG color
+        hueSlider.value = H;
 
         sensValue.text = sensSlider.value.ToString("F2");
         revertValue.text = revertSlider.value.ToString("F2");
@@ -127,22 +133,27 @@ public class UI : MonoBehaviour
             }
         }
     }
+
     void MicValueChanged(Dropdown change)
     {
         micReference.microphoneInput = Microphone.Start(Microphone.devices[change.value], true, 999, 44100);
     }
+
     void SensSliderChanged(Slider change)
     {
         sensValue.text = change.value.ToString("F2");
     }
+
     void HueSliderValueChanged(Slider change)
     {
         mainCam.backgroundColor = Color.HSVToRGB(change.value, S, V);
     }
+
     void RevertSliderValueChanged(Slider change)
     {
         revertValue.text = change.value.ToString("F2");
     }
+
     void KeybindMenuClicked()
     {
         if (emote1Button.gameObject.activeSelf == true)
