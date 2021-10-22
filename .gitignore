@@ -40,3 +40,4 @@ sysinfo.txt
 
 *.log
 Logs/ApiUpdaterCheck.txt
+settings.json

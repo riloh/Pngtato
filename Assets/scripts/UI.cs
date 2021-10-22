@@ -138,6 +138,10 @@ public class UI : MonoBehaviour
     {
         micReference.microphoneInput = Microphone.Start(Microphone.devices[change.value], true, 999, 44100);
     }
+    public void MicValueChanged(int device)
+    {
+        micReference.microphoneInput = Microphone.Start(Microphone.devices[device], true, 999, 44100);
+    }
 
     void SensSliderChanged(Slider change)
     {
@@ -147,6 +151,10 @@ public class UI : MonoBehaviour
     void HueSliderValueChanged(Slider change)
     {
         mainCam.backgroundColor = Color.HSVToRGB(change.value, S, V);
+    }
+    public void HueSliderValueChanged(float hueIn)
+    {
+        mainCam.backgroundColor = Color.HSVToRGB(hueIn, S, V);
     }
 
     void RevertSliderValueChanged(Slider change)
@@ -194,7 +202,7 @@ public class UI : MonoBehaviour
             }
             else
             {
-                buttonObj.GetComponentInChildren<Text>().text = "Emote " + buttonNum + ": " + emoteBindings[buttonNum];
+                buttonObj.GetComponentInChildren<Text>().text = "Emote " + (buttonNum + 1) + ": " + emoteBindings[buttonNum];
             }
         }
         bindValue = "9999";
