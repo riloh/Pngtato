@@ -117,6 +117,7 @@ public class UI : MonoBehaviour
                 revertValue.gameObject.SetActive(false);
                 revertSlider.gameObject.SetActive(false);
                 bounceToggle.gameObject.SetActive(false);
+                keybindMenu.gameObject.SetActive(false);
             }
             else
             {
@@ -130,6 +131,7 @@ public class UI : MonoBehaviour
                 revertValue.gameObject.SetActive(true);
                 revertSlider.gameObject.SetActive(true);
                 bounceToggle.gameObject.SetActive(true);
+                keybindMenu.gameObject.SetActive(true);
             }
         }
     }
