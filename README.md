@@ -1,5 +1,5 @@
 
-# Pngtuber
+# Pngtato
  
 A small Unity application for displaying "reactive" PNG's for use as a pngtuber streaming avatar.  Current methods to achieve this appear to mainly revolve around setting up a discord server with a voice channel, and installing plugins, but I wanted something a little more standalone.
 
