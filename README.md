@@ -10,7 +10,7 @@ Windows: [Download](https://github.com/dlance2005/Pngtato/raw/main/finalBuild/bu
 
 ## Usage
 
-Place two similarly sized PNG images in the images directory, one for the image that will be displayed when idle, and another for when talking, named "resting.png" and "talking.png".  Optionally, a third PNG titled "blinking.png" can be included for a blinking effect (ideally for eye blinking.)  There's also support for up to five emotes by providing up to five PNG's, named "emote\[1-5\].png"
+Place two similarly sized PNG images in the images directory, one for the image that will be displayed when idle, and another for when talking, named "resting.png" and "talking.png".  Optionally, a third PNG titled "blinking.png" can be included for a blinking effect (ideally for eye blinking.)  There's also support for up to five emotes by providing up to five PNG's, named "emote\[1-5\].png", which can be switched between using configurable keybindings.
 
 The following settings can be changed:
 
