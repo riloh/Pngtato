@@ -5,8 +5,10 @@ A small Unity application for displaying "reactive" PNG's for use as a pngtuber 
 
 This is mainly a personal project for my own use, so don't expect super active development, but please feel free to open an issue or reach out elsewhere with any suggestions or bugs.
 ## Download
-
+NOTE: Emote switching while application is not in focus is currently only supported on Windows for now.  Switching emotes on Linux must be done with application in focus.  Will be looking to support this on non-Windows hosts in the future.
+\
 Windows: [Download](https://github.com/riloh/Pngtato/raw/main/finalBuild/build_win.zip)  
+Linux: [Download](https://github.com/riloh/Pngtato/raw/main/finalBuild/build_linux.zip)  
 
 ## Usage
 
