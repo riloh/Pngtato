@@ -7,6 +7,7 @@ This is mainly a personal project for my own use, so don't expect super active d
 ## Download
 NOTE: Emote switching while application is not in focus is currently only supported on Windows for now.  Switching emotes on Linux must be done with application in focus.  Will be looking to support this on non-Windows hosts in the future.
 \
+\
 Windows: [Download](https://github.com/riloh/Pngtato/raw/main/finalBuild/build_win.zip)  
 Linux: [Download](https://github.com/riloh/Pngtato/raw/main/finalBuild/build_linux.zip)  
 
