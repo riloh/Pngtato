@@ -6,7 +6,7 @@ A small Unity application for displaying "reactive" PNG's for use as a pngtuber 
 This is mainly a personal project for my own use, so don't expect super active development, but please feel free to open an issue or reach out elsewhere with any suggestions or bugs.
 ## Download
 
-Windows: [Download](https://github.com/dlance2005/Pngtato/raw/main/finalBuild/build_win.zip)  
+Windows: [Download](https://github.com/riloh/Pngtato/raw/main/finalBuild/build_win.zip)  
 
 ## Usage
 
