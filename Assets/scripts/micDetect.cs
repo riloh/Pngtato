@@ -105,7 +105,7 @@ public class MicDetect : MonoBehaviour
 
         if (blinkAvailable)
         {
-            if (blinkCount <= 0 && revertDelay <= 0)
+            if (blinkCount <= 0 && revertDelay <= 0 && !blinking)
             {
                 StartCoroutine("PlayBlink");
             }
