@@ -30,8 +30,11 @@ public class MicDetect : MonoBehaviour
     {
         int emoteCounter = 0;
 
-        RawKeyInput.Start(true);
-        RawKeyInput.OnKeyDown += SetEmote;
+        if (Application.platform.ToString() == "WindowsPlayer")
+        {
+            RawKeyInput.Start(true);
+            RawKeyInput.OnKeyDown += SetEmote;
+        }
 
         if (Microphone.devices.Length > 0)
         {
