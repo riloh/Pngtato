@@ -24,6 +24,7 @@ public class MicDetect : MonoBehaviour
     public UI uiReference;
     List<Texture2D> emotions = new List<Texture2D>();
     public AudioClip microphoneInput;
+    bool isWindows = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class MicDetect : MonoBehaviour
         {
             RawKeyInput.Start(true);
             RawKeyInput.OnKeyDown += SetEmote;
+            isWindows = true;
         }
 
         if (Microphone.devices.Length > 0)
@@ -108,6 +110,14 @@ public class MicDetect : MonoBehaviour
                 StartCoroutine("PlayBlink");
             }
         }
+
+        if (!isWindows)
+        {
+            if (Input.anyKeyDown)
+            {
+                SetEmote();
+            }
+        }
     }
 
     private void OnDestroy()
@@ -160,6 +170,23 @@ public class MicDetect : MonoBehaviour
         else
         {
             uiReference.bindValue = inputString.ToString();
+        }
+    }
+    void SetEmote()
+    {
+        string inputString = Input.inputString;
+        if (!uiReference.settingKey)
+        {
+            if (inputString == uiReference.emoteBindings[0] && emotions.Count >= 1) { currentTex = emotions[0]; image.texture = currentTex; }
+            if (inputString == uiReference.emoteBindings[1] && emotions.Count >= 2) { currentTex = emotions[1]; image.texture = currentTex; }
+            if (inputString == uiReference.emoteBindings[2] && emotions.Count >= 3) { currentTex = emotions[2]; image.texture = currentTex; }
+            if (inputString == uiReference.emoteBindings[3] && emotions.Count >= 4) { currentTex = emotions[3]; image.texture = currentTex; }
+            if (inputString == uiReference.emoteBindings[4] && emotions.Count >= 5) { currentTex = emotions[4]; image.texture = currentTex; }
+            if (inputString == uiReference.emoteBindings[5]) { currentTex = restingTex; image.texture = currentTex; }
+        }
+        else
+        {
+            uiReference.bindValue = inputString;
         }
     }
 }
