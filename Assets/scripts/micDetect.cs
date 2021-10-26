@@ -71,7 +71,14 @@ public class MicDetect : MonoBehaviour
 
         image.texture = restingTex;
         currentTex = restingTex;
-    }
+
+        image.SetNativeSize();
+
+        if(image.rectTransform.rect.height > 700)
+        {
+            image.rectTransform.sizeDelta = new Vector2((float)(image.rectTransform.rect.width * 0.75), (float)(image.rectTransform.rect.height * 0.75));
+        }
+}
 
     // Update is called once per frame
     void Update()
