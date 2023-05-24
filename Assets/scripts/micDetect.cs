@@ -49,22 +49,26 @@ public class MicDetect : MonoBehaviour
             {
                 emotions.Add(new Texture2D(2, 2, TextureFormat.ARGB32, false));
                 emotions[emoteCounter].LoadImage(File.ReadAllBytes(file));
+                emotions[emoteCounter].wrapMode = TextureWrapMode.Clamp;
                 emoteCounter++;
             }
             else if (file.Contains("resting"))
             {
                 restingTex = new Texture2D(2, 2, TextureFormat.ARGB32, false);
                 restingTex.LoadImage(File.ReadAllBytes(file));
+                restingTex.wrapMode = TextureWrapMode.Clamp;
             }
             else if (file.Contains("talking"))
             {
                 talkingTex = new Texture2D(2, 2, TextureFormat.ARGB32, false);
                 talkingTex.LoadImage(File.ReadAllBytes(file));
+                talkingTex.wrapMode = TextureWrapMode.Clamp;
             }
             else if (file.Contains("blinking"))
             {
                 blinkingTex = new Texture2D(2, 2, TextureFormat.ARGB32, false);
                 blinkingTex.LoadImage(File.ReadAllBytes(file));
+                blinkingTex.wrapMode = TextureWrapMode.Clamp;
                 blinkAvailable = true;
             }
         }
